@@ -64,7 +64,12 @@ const Container = styled.div`
   }
 `;
 
-const SignUpModal: React.FC = () => {
+// ! TEST
+interface IProps {
+  closeModal: () => void;
+}
+
+const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
   const [email, setEmail] = useState("");
   const [lastname, setLastname] = useState("");
   const [firstname, setFirstname] = useState("");
@@ -104,7 +109,7 @@ const SignUpModal: React.FC = () => {
 
   return (
     <Container>
-      <CloseXIcon className="modal-close-x-icon" />
+      <CloseXIcon className="modal-close-x-icon" onClick={closeModal} />
       <div className="input-wrapper">
         <Input
           placeholder="이메일 주소"
