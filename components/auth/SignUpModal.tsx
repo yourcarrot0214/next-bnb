@@ -10,8 +10,9 @@ import { monthList, dayList, yearList } from "../../lib/staticData";
 import palette from "../../styles/palette";
 import Selector from "../common/Selector";
 import Button from "../common/Button";
+import { signupAPI } from "../../lib/api/auth";
 
-const Container = styled.div`
+const Container = styled.form`
   width: 568px;
   height: 614px;
   padding: 32px;
@@ -114,8 +115,27 @@ const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
     setBirthDay(event.target.value);
   };
 
+  const onSubmitSignUp = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    try {
+      const signUpBody = {
+        email,
+        lastname,
+        firstname,
+        password,
+        birthday: new Date(
+          `${birthYear}-${birthMonth!.replace("월", "")}-${birthDay}`
+        ).toISOString(),
+      };
+      await signupAPI(signUpBody);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
-    <Container>
+    <Container onSubmit={onSubmitSignUp}>
       <CloseXIcon className="modal-close-x-icon" onClick={closeModal} />
       <div className="input-wrapper">
         <Input
@@ -136,7 +156,8 @@ const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
       <div className="input-wrapper">
         <Input
           placeholder="성"
-          icon={<PersonIcon onChange={onChangeFirstname} />}
+          icon={<PersonIcon />}
+          onChange={onChangeFirstname}
         />
       </div>
       <div className="input-wrapper sign-up-password-input-wrapper">
