@@ -1,11 +1,1 @@
-[
-  {
-    "id": 1,
-    "email": "tester1@naver.com",
-    "password": "$2a$08$SkxWBkhm3/WWsG1RfkhPMOLDRN/gz4ldj/oNYNlkJ/TLUC2hAGGEW",
-    "firstname": "Tester",
-    "lastname": "wilted",
-    "birthday": "1987-02-13T15:00:00.000Z",
-    "profileImage": "/static/image/user/default_user_profile_image.jpg"
-  }
-]
+[{"id":1,"email":"tester1@naver.com","password":"$2a$08$p/K8J5ftlXtw3RWzsUJXQuGM3sO4rmryMeyOw1R./Q6X3zGvD4Vpi","firstname":"Tester","lastname":"Wilted","birthday":"1993-01-03T15:00:00.000Z","profileImage":"/static/image/user/default_user_profile_image.jpg"}]

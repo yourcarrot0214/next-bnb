@@ -5,9 +5,7 @@ import Data from "../../../lib/data/index";
 import { StoredUserType } from "../../../types/user";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-  console.log("signup request...");
   if (req.method === "POST") {
-    console.log(req.body);
     const { email, password, firstname, lastname, birthday } = req.body;
     if (!email || !password || !firstname || !lastname || !birthday) {
       res.statusCode = 400;
@@ -49,7 +47,14 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       resolve(token);
     });
 
-    return res.end();
+    const newUserWithoutPassword: Partial<Pick<
+      StoredUserType,
+      "password"
+    >> = newUser;
+    delete newUserWithoutPassword.password;
+
+    res.statusCode = 200;
+    return res.send(newUser);
   }
   res.statusCode = 405;
 
