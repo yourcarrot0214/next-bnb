@@ -1,6 +1,7 @@
 import React from "react";
 import styled, { css } from "styled-components";
 import palette from "../../styles/palette";
+import { useSelector } from "../../store";
 
 type InputContainerProps = {
   iconExist: boolean;
@@ -26,11 +27,6 @@ const Container = styled.div<InputContainerProps>`
     }
   }
 
-  // svg {
-  //   position: absolute;
-  //   right: 11px;
-  //   height: 46px;
-  // }
   .input-error-message {
     margin-top: 8px;
     font-weight: 600;
@@ -73,19 +69,18 @@ const Container = styled.div<InputContainerProps>`
 interface IProps extends React.InputHTMLAttributes<HTMLInputElement> {
   icon?: JSX.Element;
   isValid?: boolean;
-  validateMode?: boolean;
   useValidation?: boolean;
   errorMessage?: string;
 }
 
 const Input: React.FC<IProps> = ({
   icon,
-  validateMode,
   isValid = false,
   useValidation = true,
   errorMessage,
   ...props
 }) => {
+  const validateMode = useSelector((state) => state.common.validateMode);
   return (
     <Container
       iconExist={!!icon}
