@@ -9,3 +9,8 @@ export type UserState = UserType & {
 export type CommonState = {
   validateMode: boolean;
 };
+
+// * auth redux state
+export type AuthState = {
+  authMode: "signup" | "login";
+};

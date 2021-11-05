@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import Link from "next/link";
 import styled from "styled-components";
 import AirbnbLogoIcon from "../public/static/svg/logo/logo.svg";
@@ -6,8 +7,9 @@ import AirbnbLogoTextIcon from "../public/static/svg/logo/logo_text.svg";
 import HamburgerIcon from "../public/static/svg/header/hamburger.svg";
 import palette from "../styles/palette";
 import useModal from "../hooks/useModal";
-import SignUpModal from "./auth/SignUpModal";
-import { useSelector } from "../store";
+import AuthModal from "./auth/AuthModal";
+import { useSelector, RootState } from "../store";
+import { authActions } from "../store/auth";
 
 const Container = styled.div`
   position: sticky;
@@ -85,7 +87,8 @@ const Container = styled.div`
 
 const Header: React.FC = () => {
   const { openModal, ModalPortal, closeModal } = useModal();
-  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const user = useSelector((state: RootState) => state.user);
   return (
     <Container>
       <Link href="/">
@@ -99,11 +102,21 @@ const Header: React.FC = () => {
           <button
             className="header-sign-up-button"
             type="button"
-            onClick={openModal}
+            onClick={() => {
+              dispatch(authActions.setAuthMode("signup"));
+              openModal();
+            }}
           >
             회원가입
           </button>
-          <button className="header-login-button" type="button">
+          <button
+            className="header-login-button"
+            type="button"
+            onClick={() => {
+              dispatch(authActions.setAuthMode("login"));
+              openModal();
+            }}
+          >
             로그인
           </button>
         </div>
@@ -114,12 +127,12 @@ const Header: React.FC = () => {
           <img
             src={user.profileImage}
             className="header-user-profile-image"
-            alt="profile image"
+            alt="profile"
           />
         </button>
       )}
       <ModalPortal>
-        <SignUpModal closeModal={closeModal} />
+        <AuthModal closeModal={closeModal} />
       </ModalPortal>
     </Container>
   );

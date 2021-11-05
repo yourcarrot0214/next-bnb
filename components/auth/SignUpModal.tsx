@@ -15,6 +15,8 @@ import { signupAPI } from "../../lib/api/auth";
 import { userActions } from "../../store/user";
 import useValidateMode from "../../hooks/useValidateMode";
 import PasswordWarning from "./PasswordWarning";
+import { SYMBOL, NUMBER } from "./constant";
+import { authActions } from "../../store/auth";
 
 const Container = styled.form`
   width: 568px;
@@ -124,11 +126,7 @@ const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
 
   // * password가 정규표현식을 포함하고 있는지 검증
   const isPasswordHasNumberOrSymbol = useMemo(
-    () =>
-      !(
-        /[{}[\]/?.,;:|)*~`!^\-_+<>@#$%&\\=('"]/g.test(password) ||
-        /[0-9]/g.test(password)
-      ),
+    () => !(SYMBOL.test(password) || NUMBER.test(password)),
     [password]
   );
 
@@ -184,6 +182,9 @@ const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
   };
   const onChangeBirthDay = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setBirthDay(event.target.value);
+  };
+  const ChangeToLoginModal = () => {
+    dispatch(authActions.setAuthMode("login"));
   };
 
   const onSubmitSignUp = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -336,7 +337,7 @@ const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
         <span
           className="sign-up-modal-set-login"
           role="presentation"
-          onClick={() => {}}
+          onClick={ChangeToLoginModal}
         >
           로그인
         </span>

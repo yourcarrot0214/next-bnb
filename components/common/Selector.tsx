@@ -1,7 +1,7 @@
 import React from "react";
 import styled, { css } from "styled-components";
 import palette from "../../styles/palette";
-import { useSelector } from "../../store";
+import { useSelector, RootState } from "../../store";
 
 const Container = styled.div<{ isValid: boolean; validateMode: boolean }>`
   width: 100%;
@@ -49,7 +49,9 @@ const Selector: React.FC<IProps> = ({
   isValid,
   ...props
 }) => {
-  const validateMode = useSelector((state) => state.common.validateMode);
+  const validateMode = useSelector(
+    (state: RootState) => state.common.validateMode
+  );
   return (
     <Container isValid={!!isValid} validateMode={validateMode}>
       <select {...props}>
