@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import CloseXIcon from "../../public/static/svg/modal/modal_colose_x_icon.svg";
@@ -13,8 +13,8 @@ import Selector from "../common/Selector";
 import Button from "../common/Button";
 import { signupAPI } from "../../lib/api/auth";
 import { userActions } from "../../store/user";
-import { commonActions } from "../../store/common";
 import useValidateMode from "../../hooks/useValidateMode";
+import PasswordWarning from "./PasswordWarning";
 
 const Container = styled.form`
   width: 568px;
@@ -81,6 +81,8 @@ interface IProps {
   closeModal: () => void;
 }
 
+const PASSWORD_MIN_LENGTH = 8;
+
 const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
   const [email, setEmail] = useState("");
   const [lastname, setLastname] = useState("");
@@ -91,6 +93,38 @@ const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
   const [birthYear, setBirthYear] = useState<string | undefined>();
   const [birthMonth, setBirthMonth] = useState<string | undefined>();
   const [birthDay, setBirthDay] = useState<string | undefined>();
+
+  const [passwordFocused, setPasswordFocused] = useState(false);
+
+  const onFocusPassword = () => {
+    setPasswordFocused(true);
+  };
+
+  // * password가 email이나 이름을 포함하는지 검증
+  const isPasswordHasNameOrEmail = useMemo(
+    () =>
+      !password ||
+      !lastname ||
+      password.includes(lastname) ||
+      password.includes(email.split("@")[0]),
+    [password, lastname, email]
+  );
+
+  // * password가 최소 자릿수 이상인지 검증
+  const isPasswordOverMinLength = useMemo(
+    () => !!password && password.length >= PASSWORD_MIN_LENGTH,
+    [password]
+  );
+
+  // * password가 정규표현식을 포함하고 있는지 검증
+  const isPasswordHasNumberOrSymbol = useMemo(
+    () =>
+      !(
+        /[{}[\]/?.,;:|)*~`!^\-_+<>@#$%&\\=('"]/g.test(password) ||
+        /[0-9]/g.test(password)
+      ),
+    [password]
+  );
 
   const dispatch = useDispatch();
 
@@ -197,9 +231,30 @@ const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
           }
           onChange={onChangePassword}
           useValidation
-          isValid={!!password}
+          isValid={
+            !isPasswordHasNameOrEmail &&
+            isPasswordOverMinLength &&
+            !isPasswordHasNumberOrSymbol
+          }
           errorMessage="비밀번호를 입력하세요."
+          onFocus={onFocusPassword}
         />
+        {passwordFocused && (
+          <>
+            <PasswordWarning
+              isValid={isPasswordHasNameOrEmail}
+              text="비밀번호에 이름이나 이메일 주소를 포함할 수 없습니다."
+            />
+            <PasswordWarning
+              isValid={!isPasswordOverMinLength}
+              text="비밀번호는 최소 8자 이상이어야 합니다."
+            />
+            <PasswordWarning
+              isValid={isPasswordHasNumberOrSymbol}
+              text="숫자나 기호를 포함해야 합니다."
+            />
+          </>
+        )}
       </div>
       <p className="sign-up-birthdate-label">생일</p>
       <p className="sign-up-modal-birthday-info">
