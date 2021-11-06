@@ -1,7 +1,7 @@
 import axios from "axios";
 import { UserType } from "../../types/user.d";
 
-// * 회원가입 body
+// * signup body
 interface SignUpAPIBody {
   email: string;
   firstname: string;
@@ -10,6 +10,16 @@ interface SignUpAPIBody {
   birthday: string;
 }
 
-// * 회원가입 api
+// * signup api
 export const signupAPI = (body: SignUpAPIBody) =>
   axios.post<UserType>("/api/auth/signup", body);
+
+// * login body
+interface LoginAPIBody {
+  email: string;
+  password: string;
+}
+
+// * login api
+export const loginAPI = (body: LoginAPIBody) =>
+  axios.post<UserType>("api/auth/login", body);
