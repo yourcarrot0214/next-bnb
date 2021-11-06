@@ -22,4 +22,7 @@ interface LoginAPIBody {
 
 // * login api
 export const loginAPI = (body: LoginAPIBody) =>
-  axios.post<UserType>("api/auth/login", body);
+  axios.post<UserType>("/api/auth/login", body);
+
+// * cookie의 access_token의 유저 정보를 받아오는 api
+export const meAPI = () => axios.get<UserType>("/api/auth/me");
