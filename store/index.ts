@@ -18,7 +18,7 @@ export type RootState = ReturnType<typeof rootReducer>;
 
 let initialRootState: RootState;
 
-const reducer = (state: any, action: any) => {
+const reducer = (state: RootState, action: any) => {
   if (action.type === HYDRATE) {
     if (state === initialRootState) {
       return {
@@ -43,4 +43,4 @@ const initStore: MakeStore = () => {
   return store;
 };
 
-export const wrapper = createWrapper(initStore);
+export const wrapper = createWrapper(initStore, { debug: true });

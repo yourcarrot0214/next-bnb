@@ -17,9 +17,9 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       }
 
       // * 3. user check in database
-      const user = Data.user.find(email);
+      const user = Data.user.find({ email });
       if (!user) {
-        res.statusCode = 400;
+        res.statusCode = 404;
         return res.send("해당 이메일에 해당하는 유저가 없습니다.");
       }
 

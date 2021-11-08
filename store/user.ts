@@ -18,7 +18,10 @@ const user = createSlice({
   initialState,
   reducers: {
     // * changed login user
-    setLoggedUser(state: UserState, action: PayloadAction<UserType>) {
+    setLoggedUser(
+      state: UserState,
+      action: PayloadAction<UserType>
+    ): UserState {
       state = { ...action.payload, isLogged: true };
       return state;
     },
