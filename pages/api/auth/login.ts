@@ -36,8 +36,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       res.setHeader(
         "Set-Cookie",
         `access_token=${token}; path=/; expires=${new Date(
-          Date.now() + 60 * 60 * 1000 * 3
-        ).toISOString()}; httponly`
+          Date.now() + 60 * 60 * 1000 * 24 * 3
+        ).toUTCString()}; httponly`
       );
 
       // * 7. delete user password for response user data
@@ -54,4 +54,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       return res.send(error);
     }
   }
+  res.statusCode = 405;
+
+  return res.end();
 };

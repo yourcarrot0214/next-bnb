@@ -10,7 +10,7 @@ const auth = createSlice({
   initialState,
   reducers: {
     // * 인증 팝업 변경하기
-    setAuthMode(state: AuthState, action: PayloadAction<"signup" | "Login">) {
+    setAuthMode(state: AuthState, action: PayloadAction<"signup" | "login">) {
       state.authMode = action.payload;
     },
   },

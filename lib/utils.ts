@@ -1,5 +1,5 @@
 // * change to "token=value" => {token : value}
-export const cookieStringToObject = (cookieString: stirng | undefined) => {
+export const cookieStringToObject = (cookieString: string | undefined) => {
   const cookies: { [key: string]: string } = {};
   if (cookieString) {
     // * "token=value"
