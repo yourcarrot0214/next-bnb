@@ -88,7 +88,7 @@ const Container = styled.div`
 const Header: React.FC = () => {
   const { openModal, ModalPortal, closeModal } = useModal();
   const dispatch = useDispatch();
-  const user = useSelector((state: RootState) => state.user);
+  const user = useSelector((state) => state.user);
   return (
     <Container>
       <Link href="/">
