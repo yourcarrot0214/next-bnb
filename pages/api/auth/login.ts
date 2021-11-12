@@ -49,7 +49,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       res.statusCode = 200;
       return res.send(user);
     } catch (error) {
-      console.log(error);
+      console.log("loginAPI error :: ", error);
       res.statusCode = 500;
       return res.send(error);
     }

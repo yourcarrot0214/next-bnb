@@ -31,7 +31,7 @@ const reducer = (state: any, action: any) => {
   return rootReducer(state, action);
 };
 
-// * 타입이 지원되는 커스텀 useSelector 만들기
+//* 타입 지원되는 커스텀 useSelector 만들기
 export const useSelector: TypedUseSelectorHook<RootState> = useReduxSelector;
 
 const initStore: MakeStore = () => {
