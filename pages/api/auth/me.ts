@@ -5,6 +5,7 @@ import { StoredUserType } from "../../../types/user";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === "GET") {
+    console.log(":: meAPI ::");
     try {
       const accessToken = req.headers.cookie;
       if (!accessToken) {
@@ -25,6 +26,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       delete userWithoutPassword.password;
 
       res.statusCode = 200;
+      console.log("meAPI :: ", userWithoutPassword);
       return res.send(userWithoutPassword);
     } catch (error) {
       console.log(error);
