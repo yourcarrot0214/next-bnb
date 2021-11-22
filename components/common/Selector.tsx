@@ -26,15 +26,6 @@ const normalSelectorStyle = css`
       border-color: ${palette.dark_cyan};
     }
   }
-
-  /* ${({ isValid, validateMode }) =>
-    validateMode &&
-    css`
-      select {
-        border-color: ${isValid ? palette.dark_cyan : palette.tawny} !important;
-        background-color: ${isValid ? "white" : palette.snow};
-      }
-    `} */
 `;
 
 const RegisterSelectorStyle = css`
@@ -60,7 +51,7 @@ const RegisterSelectorStyle = css`
     -webkit-appearance: none;
     background-image: url("/static/svg/common/selector/register_selector_down_arrow.svg");
     background-position: right 14px center;
-    background-repeat: no-repeate;
+    background-repeat: no-repeat;
   }
 `;
 
