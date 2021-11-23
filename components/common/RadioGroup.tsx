@@ -36,6 +36,7 @@ const Container = styled.div<{ isValid: boolean; validateMode: boolean }>`
     height: 16px;
     margin: 0;
     position: relative;
+    margin: 0;
     margin-right: 12px;
     flex-shrink: 0;
     font-size: 16px;
@@ -130,6 +131,7 @@ const RadioGroup: React.FC<IProps> = ({
               type="radio"
               checked={value === option.value}
               onChange={() => onChange && onChange(option.value)}
+              value={option.value}
             />
             <span>
               {option.label}
