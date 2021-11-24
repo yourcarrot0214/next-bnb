@@ -5,7 +5,7 @@ import { bedTypes } from "../../lib/staticData";
 import { useSelector } from "../../store";
 import { registerRoomActions } from "../../store/registerRoom";
 import palette from "../../styles/palette";
-import { bedType, BedType } from "../../types/room";
+import { BedType } from "../../types/room";
 import Button from "../common/Button";
 import Counter from "../common/Counter";
 import Selector from "../common/Selector";

@@ -8,8 +8,8 @@ import Counter from "../common/Counter";
 import { getNumber } from "../../lib/utils";
 import Selector from "../common/Selector";
 import { bedroomCountList } from "../../lib/staticData";
-import RegisterRoomBedTypes from "./RegisterRoomBedTypes";
 import RegisterRoomBedList from "./RegisterRoomBedList";
+import RegisterRoomFooter from "./RegisterRoomFooter";
 
 const Container = styled.div`
   padding: 62px 30px 100px;
@@ -118,6 +118,11 @@ const RegisterRoomBedrooms: React.FC = () => {
         게스트가 잘 파악할 수 있습니다.
       </p>
       <RegisterRoomBedList />
+      <RegisterRoomFooter
+        prevHref="room/register/building"
+        nextHref="room/register/bathroom"
+        isValid={!!bedroomCount}
+      />
     </Container>
   );
 };
