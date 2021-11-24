@@ -119,8 +119,8 @@ const RegisterRoomBedrooms: React.FC = () => {
       </p>
       <RegisterRoomBedList />
       <RegisterRoomFooter
-        prevHref="room/register/building"
-        nextHref="room/register/bathroom"
+        prevHref="/room/register/building"
+        nextHref="/room/register/bathroom"
         isValid={!!bedroomCount}
       />
     </Container>
