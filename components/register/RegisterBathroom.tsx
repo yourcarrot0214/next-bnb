@@ -13,7 +13,7 @@ const Container = styled.div`
   h2 {
     font-size: 19px;
     font-weight: 800;
-    margin-bottom: 6px;
+    margin-bottom: 56px;
   }
   h3 {
     font-weight: bold;
