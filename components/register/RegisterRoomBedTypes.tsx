@@ -99,7 +99,7 @@ const RegisterRoomBedTypes: React.FC<IProps> = ({ bedroom }) => {
   // * 침대 종류 텍스트
   const bedsText = useMemo(() => {
     const texts = bedroom.beds.map((bed) => `${bed.type} ${bed.count}개`);
-    return texts.join(",");
+    return texts.join(", ");
   }, [bedroom]);
 
   return (

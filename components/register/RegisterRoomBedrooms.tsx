@@ -9,6 +9,7 @@ import { getNumber } from "../../lib/utils";
 import Selector from "../common/Selector";
 import { bedroomCountList } from "../../lib/staticData";
 import RegisterRoomBedTypes from "./RegisterRoomBedTypes";
+import RegisterRoomBedList from "./RegisterRoomBedList";
 
 const Container = styled.div`
   padding: 62px 30px 100px;
@@ -66,7 +67,6 @@ const RegisterRoomBedrooms: React.FC = () => {
   );
   const bedroomCount = useSelector((state) => state.registerRoom.bedroomCount);
   const bedCount = useSelector((state) => state.registerRoom.bedCount);
-  const bedList = useSelector((state) => state.registerRoom.bedList);
   const dispatch = useDispatch();
 
   const onChangeMaximumGuestCount = (value: number) => {
@@ -117,11 +117,7 @@ const RegisterRoomBedrooms: React.FC = () => {
         각 침실에 놓인 침대 유형을 명시하면 숙소에 침대가 어떻게 구비되어 있는지
         게스트가 잘 파악할 수 있습니다.
       </p>
-      <ul className="register-room-bed-type-list-wrapper">
-        {bedList.map((bedroom, index) => (
-          <RegisterRoomBedTypes bedroom={bedroom} key={index} />
-        ))}
-      </ul>
+      <RegisterRoomBedList />
     </Container>
   );
 };
