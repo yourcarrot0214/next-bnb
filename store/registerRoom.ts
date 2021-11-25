@@ -14,6 +14,15 @@ type RegisterRoomState = {
   publicBedList: { type: BedType; count: number }[];
   bathroomCount: number;
   bathroomType: "private" | "public" | null;
+  // 숙소 위치 등록하기
+  country: string;
+  city: string;
+  district: string;
+  streetAddress: string;
+  detailAddress: string;
+  postcode: string;
+  latitude: number;
+  longitude: number;
 };
 
 const initialState: RegisterRoomState = {
@@ -35,6 +44,22 @@ const initialState: RegisterRoomState = {
   bathroomCount: 1,
   // * 욕실 유형
   bathroomType: null,
+  // * 국가/지역
+  country: "",
+  // * 시/도
+  city: "",
+  // * 시/군/구
+  district: "",
+  // * 도로명주소
+  streetAddress: "",
+  // * 동호수
+  detailAddress: "",
+  // * 우편번호
+  postcode: "",
+  // * 위도
+  latitude: 0,
+  // * 경도
+  longitude: 0,
 };
 
 const registerRoom = createSlice({
@@ -164,6 +189,38 @@ const registerRoom = createSlice({
     ) {
       state.bathroomType = action.payload;
       return state;
+    },
+    // * 국가 변경하기
+    setCountry(state: RegisterRoomState, action: PayloadAction<string>) {
+      state.country = action.payload;
+    },
+    // * 시/도 변경하기
+    setCity(state: RegisterRoomState, action: PayloadAction<string>) {
+      state.city = action.payload;
+    },
+    // * 시/군/구 변경하기
+    setDistrict(state: RegisterRoomState, action: PayloadAction<string>) {
+      state.district = action.payload;
+    },
+    //  * 도로명주소 변경하기
+    setStreetAddress(state: RegisterRoomState, action: PayloadAction<string>) {
+      state.streetAddress = action.payload;
+    },
+    // * 동호수 변경하기
+    setDetailAddress(state: RegisterRoomState, action: PayloadAction<string>) {
+      state.detailAddress = action.payload;
+    },
+    // * 우편번호 변경하기
+    setPostcode(state: RegisterRoomState, action: PayloadAction<string>) {
+      state.postcode = action.payload;
+    },
+    // * 위도 변경하기
+    setLatitude(state: RegisterRoomState, action: PayloadAction<number>) {
+      state.latitude = action.payload;
+    },
+    // * 경도 변경하기
+    setLongitude(state: RegisterRoomState, action: PayloadAction<number>) {
+      state.longitude = action.payload;
     },
   },
 });
