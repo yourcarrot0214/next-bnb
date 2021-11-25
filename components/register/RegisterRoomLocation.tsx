@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { useSelector } from "../../store";
@@ -9,6 +9,8 @@ import Button from "../common/Button";
 import Selector from "../common/Selector";
 import { countryList } from "../../lib/staticData";
 import Input from "../common/Input";
+import { getLocationInfoAPI } from "../../lib/api/map";
+import RegisterRoomFooter from "./RegisterRoomFooter";
 
 const Container = styled.div`
   padding: 62px 30px 100px;
@@ -39,6 +41,8 @@ const Container = styled.div`
 `;
 
 const RegisterRoomLocation: React.FC = () => {
+  const [loading, setLoading] = useState(false);
+
   const dispatch = useDispatch();
 
   const country = useSelector((state) => state.registerRoom.country);
@@ -81,13 +85,31 @@ const RegisterRoomLocation: React.FC = () => {
   };
 
   // * 현재 위치 불러오기에 성공시
-  const onSuccessGetLocation = ({ coords }: any) => {
-    console.log("latitude : ", coords.latitude);
-    console.log("longitude : ", coords.longitude);
+  const onSuccessGetLocation = async ({ coords }: any) => {
+    try {
+      const { data } = await getLocationInfoAPI({
+        latitude: coords.latitude,
+        longitude: coords.longitude,
+      });
+
+      dispatch(registerRoomActions.setCountry(data.country));
+      dispatch(registerRoomActions.setCity(data.city));
+      dispatch(registerRoomActions.setDistrict(data.district));
+      dispatch(registerRoomActions.setStreetAddress(data.streetAddress));
+      dispatch(registerRoomActions.setPostcode(data.postcode));
+      dispatch(registerRoomActions.setLatitude(data.latitude));
+      dispatch(registerRoomActions.setLongitude(data.longitude));
+    } catch (error) {
+      console.log(error);
+      alert(error?.message);
+    }
+
+    setLoading(false);
   };
 
   // * 현재 위치 사용 클릭시
   const onClickGetCurrentLocation = () => {
+    setLoading(true);
     navigator.geolocation.getCurrentPosition(onSuccessGetLocation, (e) => {
       console.log(e);
       alert(e?.message);
@@ -108,7 +130,7 @@ const RegisterRoomLocation: React.FC = () => {
           icon={<NvaigationIcon />}
           onClick={onClickGetCurrentLocation}
         >
-          현재 위치 사용
+          {loading ? "불러오는중..." : "현재 위치 사용"}
         </Button>
       </div>
       <div className="register-room-location-country-selector-wrapper">
@@ -123,22 +145,31 @@ const RegisterRoomLocation: React.FC = () => {
         />
       </div>
       <div className="register-room-location-city-district">
-        <Input label="시/도" onChange={onChangeCity} />
-        <Input label="시/군/구" onChange={onChangeDistrict} />
+        <Input label="시/도" onChange={onChangeCity} value={city} />
+        <Input label="시/군/구" onChange={onChangeDistrict} value={district} />
       </div>
       <div className="register-room-location-street-address">
-        <Input label="도로명주소" onChange={onChangeStreetAddress} />
+        <Input
+          label="도로명주소"
+          onChange={onChangeStreetAddress}
+          value={streetAddress}
+        />
       </div>
       <div className="register-room-location-detail-address">
         <Input
           label="동호수(선택 사항)"
           onChange={onChangeDetailAddress}
           useValidation={false}
+          value={detailAddress}
         />
       </div>
       <div className="register-room-location-postcode">
-        <Input label="우편번호" onChange={onChangePostcode} />
+        <Input label="우편번호" onChange={onChangePostcode} value={postcode} />
       </div>
+      <RegisterRoomFooter
+        prevHref="/room/register/bathroom"
+        nextHref="/room/register/geometry"
+      />
     </Container>
   );
 };
