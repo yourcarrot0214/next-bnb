@@ -80,6 +80,20 @@ const RegisterRoomLocation: React.FC = () => {
     dispatch(registerRoomActions.setPostcode(event.target.value));
   };
 
+  // * 현재 위치 불러오기에 성공시
+  const onSuccessGetLocation = ({ coords }: any) => {
+    console.log("latitude : ", coords.latitude);
+    console.log("longitude : ", coords.longitude);
+  };
+
+  // * 현재 위치 사용 클릭시
+  const onClickGetCurrentLocation = () => {
+    navigator.geolocation.getCurrentPosition(onSuccessGetLocation, (e) => {
+      console.log(e);
+      alert(e?.message);
+    });
+  };
+
   return (
     <Container>
       <h2>숙소의 위치를 알려주세요.</h2>
@@ -88,7 +102,12 @@ const RegisterRoomLocation: React.FC = () => {
         정확한 숙소 주소는 게스트가 예약을 완료한 후에만 공개됩니다.
       </p>
       <div className="register-room-location-button-wrapper">
-        <Button color="dark_cyan" colorReverse icon={<NvaigationIcon />}>
+        <Button
+          color="dark_cyan"
+          colorReverse
+          icon={<NvaigationIcon />}
+          onClick={onClickGetCurrentLocation}
+        >
           현재 위치 사용
         </Button>
       </div>
