@@ -35,3 +35,10 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
   return res.end();
 };
+
+/* 
+	? Example of reverse geocoding : https://developers.google.com/maps/documentation/geocoding/overview#reverse-example
+
+	example => https://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452&key=YOUR_API_KEY
+	위도와 경도값 사이에 공백이 없도록 주의
+*/
