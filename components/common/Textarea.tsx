@@ -25,7 +25,7 @@ const StyledTextarea = styled(ReactAutosizeTextarea)`
 const Textarea: React.FC<React.TextareaHTMLAttributes<HTMLTextAreaElement>> = ({
   ...props
 }) => {
-  return <StyledTextarea {...props} placeholder="왜지?" />;
+  return <StyledTextarea {...props} />;
 };
 
 export default React.memo(Textarea);
