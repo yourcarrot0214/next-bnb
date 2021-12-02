@@ -1,3 +1,7 @@
+import React from "react";
+import { useDispatch } from "react-redux";
+import { registerRoomActions } from "../store/registerRoom";
+
 // * change to "token=value" => {token : value}
 export const cookieStringToObject = (cookieString: string | undefined) => {
   const cookies: { [key: string]: string } = {};
@@ -21,4 +25,13 @@ export const getNumber = (string: string) => {
     return Number(numbers);
   }
   return null;
+};
+
+// * 금액 변경시
+export const makeMoneyString = (input: string) => {
+  const amountString = input.replace(/[^0-9]/g, "");
+  if (amountString) {
+    return parseInt(amountString, 10).toLocaleString();
+  }
+  return "";
 };
