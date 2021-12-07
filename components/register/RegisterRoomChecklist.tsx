@@ -3,6 +3,8 @@ import styled from "styled-components";
 import isEmpty from "lodash/isEmpty";
 import { useSelector } from "../../store";
 import RegisterRoomCheckStep from "./RegisterRoomCheckStep";
+import RegisterRoomFooter from "./RegisterRoomFooter";
+import RegisterRoomSubmitFooter from "./RegisterRoomSubmitFooter";
 
 const Container = styled.div`
   padding: 62px 30px 100px;
@@ -22,25 +24,19 @@ const RegisterRoomChecklist: React.FC = () => {
   const registerRoom = useSelector((state) => state.registerRoom);
 
   // * 숙소 유형 활성화 체크
-  const isBuildingTypeActived = () =>
-    useMemo(() => {
-      const {
-        largeBuildingType,
-        buildingType,
-        roomType,
-        isSetUpForGuest,
-      } = registerRoom;
+  const isBuildingTypeActived = useMemo(() => {
+    const {
+      largeBuildingType,
+      buildingType,
+      roomType,
+      isSetUpForGuest,
+    } = registerRoom;
 
-      if (
-        !largeBuildingType ||
-        !buildingType ||
-        !roomType ||
-        !isSetUpForGuest
-      ) {
-        return false;
-      }
-      return true;
-    }, []);
+    if (!largeBuildingType || !buildingType || !roomType || !isSetUpForGuest) {
+      return false;
+    }
+    return true;
+  }, []);
 
   // * 숙소 종류 활성화 체크
   const isRoomTypeActived = useMemo(() => {
@@ -114,7 +110,7 @@ const RegisterRoomChecklist: React.FC = () => {
   const isPhotoActived = useMemo(() => {
     const { photos } = registerRoom;
 
-    if (!isConviniencesActived || !isEmpty(photos)) {
+    if (!isConviniencesActived || isEmpty(photos)) {
       return false;
     }
     return true;
@@ -246,6 +242,14 @@ const RegisterRoomChecklist: React.FC = () => {
           inProgress={stepInProgress === "date"}
         />
       </ul>
+      {isDateActived ? (
+        <RegisterRoomSubmitFooter />
+      ) : (
+        <RegisterRoomFooter
+          prevHref="/room/register/date"
+          nextHref={`/room/register/${stepInProgress}`}
+        />
+      )}
     </Container>
   );
 };
