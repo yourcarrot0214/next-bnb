@@ -1,5 +1,5 @@
 import { UserType } from "./user.d";
-
+import { BedType } from "./room.d";
 // * user redux state
 export type UserState = UserType & {
   isLogged: boolean;
@@ -52,4 +52,16 @@ export type RegisterRoomState = {
   startDate: string | null;
   // 예약 종료 날짜
   endDate: string | null;
+};
+
+// * 숙소 검색 redux state type
+export type SearchRoomState = {
+  location: string;
+  latitude: number;
+  longitude: number;
+  checkInDate: string | null;
+  checkOutDate: string | null;
+  adultCount: number;
+  childrenCount: number;
+  infantsCount: number;
 };
