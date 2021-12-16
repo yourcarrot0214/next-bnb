@@ -22,16 +22,14 @@ app.getInitialProps = async (context: AppContext) => {
   console.log(":: getInitialProps ::");
   const appInitialProps = await App.getInitialProps(context);
   const cookieObject = cookieStringToObject(context.ctx.req?.headers.cookie);
-  axios.defaults.headers.cookie = cookieObject.access_token;
-  console.log(context.ctx.req?.headers);
   const { store } = context.ctx;
   const { isLogged } = store.getState().user;
-  console.log("cookieObject : ", cookieObject);
+
   try {
     if (!isLogged && cookieObject.access_token) {
       console.log(":: TRY ::");
       axios.defaults.headers.cookie = cookieObject.access_token;
-      console.log("axios.cookie : ", axios.defaults.headers.cookie);
+
       const { data } = await meAPI();
       console.log("data", data);
       store.dispatch(userActions.setLoggedUser(data));

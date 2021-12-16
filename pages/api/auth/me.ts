@@ -2,13 +2,14 @@ import { NextApiRequest, NextApiResponse } from "next";
 import jwt from "jsonwebtoken";
 import Data from "../../../lib/data";
 import { StoredUserType } from "../../../types/user";
+import axios from "../../../lib/api";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   console.log(":: meAPI ::");
   if (req.method === "GET") {
-    console.log("meAPI method confirm");
     try {
-      const accessToken = req.headers.cookie;
+      // ! req.headers에 cookie가 없으므로 axios header의 cookie값으로 대체
+      const accessToken = axios.defaults.headers.cookie;
       if (!accessToken) {
         res.statusCode = 400;
         return res.send("access_token이 없습니다.");
