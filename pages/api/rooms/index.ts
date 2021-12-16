@@ -12,13 +12,13 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         roomType,
         isSetUpForGuest,
         maximumGuestCount,
-        beddroomCount,
+        bedroomCount,
         bedCount,
         bedList,
         publicBedList,
         bathroomCount,
         bathroomType,
-        latitued,
+        latitude,
         longitude,
         country,
         city,
@@ -43,13 +43,13 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         !roomType ||
         isSetUpForGuest === null ||
         !maximumGuestCount ||
-        !beddroomCount ||
+        !bedroomCount ||
         !bedCount ||
         !bedList ||
         !publicBedList ||
         !bathroomCount ||
         bathroomType === null ||
-        !latitued ||
+        !latitude ||
         !longitude ||
         !country ||
         !city ||

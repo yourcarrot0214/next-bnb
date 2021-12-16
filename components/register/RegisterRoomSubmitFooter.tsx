@@ -7,6 +7,7 @@ import { useSelector } from "../../store";
 import BackArrowIcon from "../../public/static/svg/register/register_room_footer_back_arrow.svg";
 import palette from "../../styles/palette";
 import Button from "../common/Button";
+import { RegisterRoomState } from "../../types/reduxState";
 
 const Container = styled.footer`
   position: fixed;
@@ -34,7 +35,9 @@ const Container = styled.footer`
 
 const RegisterRoomSubmitFooter: React.FC = () => {
   const userId = useSelector((state) => state.user.id);
-  const registerRoom = useSelector((state) => state.registerRoom);
+  const registerRoom: RegisterRoomState = useSelector(
+    (state) => state.registerRoom
+  );
 
   const router = useRouter();
 
