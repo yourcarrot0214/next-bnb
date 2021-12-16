@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useRouter } from "next/dist/client/router";
 import styled from "styled-components";
 import OutsideClickHandler from "react-outside-click-handler";
 import { useDispatch } from "react-redux";
@@ -65,11 +66,13 @@ const HeaderUserProfile: React.FC = () => {
   const [isUsermenuOpened, setIsUsermenuOpened] = useState(false);
   const userProfileImage = useSelector((state) => state.user.profileImage);
   const dispatch = useDispatch();
+  const router = useRouter();
 
   const logout = async () => {
     try {
       await logoutAPI();
       dispatch(userActions.initUser());
+      router.push("/");
     } catch (e) {
       console.log(e.message);
     }

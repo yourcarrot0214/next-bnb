@@ -56,10 +56,37 @@ const getButtonSize = (size: "small" | "medium") => {
   }
 };
 
+const normalButtonStyle = css`
+  width: 100%;
+  height: 48px;
+  padding: 0 15px;
+  border: 0;
+  border-radius: 4px;
+  background-color: ${palette.bittersweet};
+  color: white;
+  font-size: 16px;
+  font-weight: 800;
+  outline: none;
+  cursor: pointer;
+`;
+
+const RegisterButtonStyle = css`
+  width: 161px;
+  height: 45px;
+  border: 1px solid ${palette.gray_c4};
+  border-radius: 4px;
+  color: ${palette.gray_48};
+  font-size: 18px;
+  font-weight: 700;
+  outline: none;
+  cursor: pointer;
+`;
+
 interface StyledButtonProps {
   width: string | undefined;
   colorReverse: boolean;
   size: "small" | "medium";
+  styleType: "normal" | "register";
 }
 
 const Container = styled.button<StyledButtonProps>`
@@ -78,6 +105,8 @@ const Container = styled.button<StyledButtonProps>`
   width: ${(props) => props.width};
   ${(props) => getButtonColor(props.color || "", props.colorReverse)};
   ${(props) => getButtonSize(props.size)}
+  ${({ styleType }) =>
+    styleType === "register" ? RegisterButtonStyle : normalButtonStyle}
 
   svg {
     margin-right: 12px;
@@ -91,6 +120,7 @@ interface IProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   colorReverse?: boolean;
   icon?: JSX.Element;
   size?: "small" | "medium";
+  styleType?: "normal" | "register";
 }
 
 const Button: React.FC<IProps> = ({
@@ -100,6 +130,7 @@ const Button: React.FC<IProps> = ({
   colorReverse = false,
   icon,
   size = "medium",
+  styleType = "normal",
   ...props
 }) => {
   return (
@@ -109,6 +140,7 @@ const Button: React.FC<IProps> = ({
       width={width}
       colorReverse={colorReverse}
       size={size}
+      styleType={styleType}
     >
       {icon}
       {children}
