@@ -157,7 +157,7 @@ const SearchRoomBarLocation: React.FC = () => {
     <Container onClick={onClickInput}>
       <OutsideClickHandler onOutsideClick={() => setPopupOpened(false)}>
         <div className="search-room-bar-location-texts">
-          <p className="search-room-bar-location-label">인원</p>
+          <p className="search-room-bar-location-label">위치</p>
           <input
             value={location}
             onChange={(e) => setLocationDispatch(e.target.value)}
