@@ -61,6 +61,7 @@ module.exports = {
       }, //import 시 확장자명은 사용하지 않는다.
     ],
     "no-console": "off",
+    "react/require-default-props": "off",
   },
   settings: {
     "import/resolver": {
