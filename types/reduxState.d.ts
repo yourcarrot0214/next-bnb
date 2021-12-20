@@ -1,5 +1,5 @@
 import { UserType } from "./user.d";
-import { BedType } from "./room.d";
+import { BedType, RoomType } from "./room.d";
 // * user redux state
 export type UserState = UserType & {
   isLogged: boolean;
@@ -64,4 +64,9 @@ export type SearchRoomState = {
   adultCount: number;
   childrenCount: number;
   infantsCount: number;
+};
+
+// * 숙소 redux state
+export type RoomState = {
+  rooms: RoomType[];
 };
