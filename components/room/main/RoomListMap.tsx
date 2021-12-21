@@ -1,12 +1,5 @@
 /* eslint-disable no-undef */
-import React, {
-  useEffect,
-  useRef,
-  useState,
-  PropsWithChildren,
-  RefObject,
-  createRef,
-} from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { useSelector } from "../../../store";
 
@@ -63,7 +56,7 @@ const Container = styled.div`
 declare global {
   interface Window {
     google: any;
-    initMap: any;
+    initMap: () => void;
   }
 }
 
@@ -85,7 +78,10 @@ interface IProps {
   setShowMap: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const RoomListMap: React.FC<IProps> = ({ setShowMap, showMap }) => {
+const RoomListMap: ({ setShowMap, showMap }: IProps) => React.FC<IProps> = ({
+  setShowMap,
+  showMap,
+}: IProps) => {
   const rooms = useSelector((state) => state.room.rooms);
   const mapRef = useRef<HTMLDivElement>(null);
   const [currentLocation, setCurrentLocation] = useState({
