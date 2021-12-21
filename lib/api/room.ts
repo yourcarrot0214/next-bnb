@@ -25,3 +25,7 @@ type GetRoomListAPIQueries = {
 export const getRoomListAPI = (queries: GetRoomListAPIQueries) => {
   return axios.get<RoomType[]>(makeQueryString("/api/rooms", queries));
 };
+
+// * id값의 숙소 정보 불러오기
+export const getRoomAPI = (roomId: number) =>
+  axios.get<RoomType>(`/api/rooms/${roomId}`);
