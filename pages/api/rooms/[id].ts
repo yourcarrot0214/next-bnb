@@ -19,7 +19,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
           >> = host;
           delete newUserWithoutPassword.password;
 
-          const roomWithHost = { ...room, newUserWithoutPassword };
+          const roomWithHost = { ...room, host: newUserWithoutPassword };
 
           res.statusCode = 200;
           return res.send(roomWithHost);

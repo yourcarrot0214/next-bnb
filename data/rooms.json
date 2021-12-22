@@ -29,7 +29,7 @@
     "title": "숙소 제목",
     "price": 100000,
     "startDate": "2021-12-18T00:00:00.000Z",
-    "endDate": "2021-12-19T00:00:00.000Z",
+    "endDate": "2025-12-19T00:00:00.000Z",
     "hostId": 1,
     "createdAt": "2021-12-07T12:26:29.229Z",
     "updatedAt": "2021-12-07T12:26:29.229Z"
@@ -40,7 +40,7 @@
     "buildingType": "게스트 스위트",
     "roomType": "entire",
     "isSetUpForGuest": true,
-    "maximumGuestCount": 1,
+    "maximumGuestCount": 6,
     "bedroomCount": 1,
     "bedCount": 1,
     "bedList": [{ "id": 1, "beds": [{ "type": "퀸", "count": 1 }] }],
@@ -65,7 +65,7 @@
     "title": "title",
     "price": 120000,
     "startDate": "2021-12-24T00:00:00.000Z",
-    "endDate": "2021-12-25T00:00:00.000Z",
+    "endDate": "2025-12-25T00:00:00.000Z",
     "hostId": 1,
     "createdAt": "2021-12-07T12:54:09.753Z",
     "updatedAt": "2021-12-07T12:54:09.753Z"
@@ -108,7 +108,7 @@
     "title": "통나무집",
     "price": 50000,
     "startDate": "2021-12-27T00:00:00.000Z",
-    "endDate": "2021-12-28T00:00:00.000Z",
+    "endDate": "2025-12-28T00:00:00.000Z",
     "hostId": 1,
     "createdAt": "2021-12-07T13:09:09.454Z",
     "updatedAt": "2021-12-07T13:09:09.454Z"
@@ -119,7 +119,7 @@
     "buildingType": "공동주택",
     "roomType": "entire",
     "isSetUpForGuest": true,
-    "maximumGuestCount": 4,
+    "maximumGuestCount": 6,
     "bedroomCount": 2,
     "bedCount": 1,
     "bedList": [
@@ -156,7 +156,7 @@
     "title": "수원 장안구청 사거리 숙소",
     "price": 150000,
     "startDate": "2021-12-27T00:00:00.000Z",
-    "endDate": "2021-12-28T00:00:00.000Z",
+    "endDate": "2025-12-28T00:00:00.000Z",
     "hostId": 1,
     "createdAt": "2021-12-16T07:01:00.834Z",
     "updatedAt": "2021-12-16T07:01:00.834Z"

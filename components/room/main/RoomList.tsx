@@ -21,6 +21,7 @@ interface IProps {
 
 const RoomList: React.FC<IProps> = ({ showMap }) => {
   const rooms = useSelector((state) => state.room.rooms);
+  rooms.forEach((room) => console.log(room.host.lastname));
 
   return (
     <Container showMap={showMap}>
