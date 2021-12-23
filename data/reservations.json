@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "roomId": 3,
+    "userId": 2,
+    "checkInDate": "2021-12-31T00:00:00.000Z",
+    "checkOutDate": "2022-01-01T00:00:00.000Z",
+    "adultCount": 1,
+    "childrenCount": 0,
+    "infantsCount": 0,
+    "createdAt": "2021-12-23T12:24:16.109Z",
+    "updatedAt": "2021-12-23T12:24:16.109Z"
+  }
+]

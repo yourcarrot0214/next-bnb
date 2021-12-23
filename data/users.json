@@ -1,11 +1,1 @@
-[
-  {
-    "id": 1,
-    "email": "tester1@naver.com",
-    "password": "$2a$08$njt.QhcXikuDs9KIz9mA5er6gbtChzACvmEjH/yYiiONTWB9lEEkW",
-    "firstname": "Tester",
-    "lastname": "Wilted",
-    "birthday": "1989-01-24T15:00:00.000Z",
-    "profileImage": "/static/image/user/default_user_profile_image.jpg"
-  }
-]
+[{"id":1,"email":"tester1@naver.com","password":"$2a$08$njt.QhcXikuDs9KIz9mA5er6gbtChzACvmEjH/yYiiONTWB9lEEkW","firstname":"Tester","lastname":"Wilted","birthday":"1989-01-24T15:00:00.000Z","profileImage":"/static/image/user/default_user_profile_image.jpg"},{"id":2,"email":"tester2@naver.com","password":"$2a$08$/ZRNF.s648b6xqctt5ib/OiyXkoQdbSxt7FmaQx4yvjepQKvBiCIu","firstname":"Jeong","lastname":"ByungHoon","birthday":"1987-02-13T15:00:00.000Z","profileImage":"/static/image/user/default_user_profile_image.jpg"}]

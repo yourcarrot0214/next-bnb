@@ -1,4 +1,5 @@
 import React, { useState, useRef, useMemo } from "react";
+import { useRouter } from "next/dist/client/router";
 import styled from "styled-components";
 import OutsideClickHandler from "react-outside-click-handler";
 import DatePicker from "../../common/DatePicker";
@@ -8,6 +9,7 @@ import { useSelector } from "../../../store";
 import Counter from "../../common/Counter";
 import useModal from "../../../hooks/useModal";
 import AuthModal from "../../auth/AuthModal";
+import { makeReservationAPI } from "../../../lib/api/reservation";
 
 const Container = styled.div`
   position: sticky;
@@ -155,6 +157,7 @@ const RoomDetailReservation: React.FC = () => {
   }
   const price = useSelector((state) => state.room.detail?.price);
   const userId = useSelector((state) => state.user.id);
+  const router = useRouter();
   const { openModal, ModalPortal, closeModal } = useModal();
 
   const [startDate, setStartDate] = useState<Date | null>(null);
@@ -174,6 +177,23 @@ const RoomDetailReservation: React.FC = () => {
       checkInRef.current.focus();
     } else if (checkOutRef.current && !endDate) {
       checkOutRef.current.focus();
+    } else {
+      try {
+        const body = {
+          roomId: room.id,
+          userId,
+          checkInDate: startDate!.toISOString(),
+          checkOutDate: endDate!.toISOString(),
+          adultCount,
+          childrenCount,
+          infantsCount,
+        };
+        await makeReservationAPI(body);
+        alert("숙소 예약을 완료하였습니다.");
+        router.push("/");
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
@@ -184,9 +204,6 @@ const RoomDetailReservation: React.FC = () => {
       }`,
     [adultCount, childrenCount, infantsCount]
   );
-
-  console.log(startDate, endDate);
-  console.log("price : ", price);
 
   return (
     <Container>
