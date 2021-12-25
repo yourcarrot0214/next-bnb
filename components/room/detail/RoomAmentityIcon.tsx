@@ -34,7 +34,7 @@ const RoomAmentityIcon: React.FC<IProps> = ({ amentity }) => {
       return <HairDryerIcon />;
     case "조식, 커피, 차":
       return <CoffeeIcon />;
-    case "업무 가능 공간/책상":
+    case "업무가능 공간/책상":
       return <NotebookIcon />;
     case "벽난로":
       return <FireplaceIcon />;
