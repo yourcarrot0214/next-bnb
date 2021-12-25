@@ -1,4 +1,4 @@
-import { UserType } from "./user";
+import { UserType } from "./user.d";
 
 // * 침대 유형 타입 설정
 export type BedType =
@@ -51,38 +51,7 @@ export type StoredRoomType = {
 };
 
 // * 숙소 타입
-
-export type RoomType = {
-  id: number;
-  largeBuildingType: string | null;
-  buildingType: string | null;
-  roomType: string | null;
-  isSetUpForGuest: boolean | null;
-  maximumGuestCount: number;
-  bedroomCount: number;
-  bedCount: number;
-  bedList: { id: number; beds: { type: BedType; count: number }[] }[];
-  publicBedList: { type: BedType; count: number }[];
-  bathroomCount: number;
-  bathroomType: "private" | "public";
-  latitude: number;
-  longitude: number;
-  country: string;
-  city: string;
-  district: string;
-  streetAddress: string;
-  detailAddress: string;
-  postcode: string;
-  amentities: string[];
-  conveniences: string[];
-  photos: string[];
-  description: string;
-  title: string;
-  price: string;
-  startDate: Date;
-  endDate: Date;
-  createAt: Date;
-  updatedAt: Date;
-  hostId: number;
+// ? Item 14. 타입 연산과 제너릭 사용으로 반복 줄이기
+export type RoomType = StoredRoomType & {
   host: UserType;
 };
