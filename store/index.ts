@@ -11,6 +11,7 @@ import auth from "./auth";
 import registerRoom from "./registerRoom";
 import searchRoom from "./searchRoom";
 import room from "./room";
+import host from "./host";
 
 const rootReducer = combineReducers({
   user: user.reducer,
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   registerRoom: registerRoom.reducer,
   searchRoom: searchRoom.reducer,
   room: room.reducer,
+  host: host.reducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
@@ -61,7 +63,7 @@ const initStore: MakeStore = () => {
   return store;
 };
 
-// export const wrapper = createWrapper(initStore);
-export const wrapper = createWrapper<Store<RootState>>(makeStore, {
-  debug: true,
-});
+export const wrapper = createWrapper(initStore);
+// export const wrapper = createWrapper<Store<RootState>>(makeStore, {
+//   debug: true,
+// });
