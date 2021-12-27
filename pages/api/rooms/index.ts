@@ -15,6 +15,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       limit,
       page = "1",
     } = req.query;
+    console.log(req.query);
 
     try {
       const rooms = Data.room.getList();

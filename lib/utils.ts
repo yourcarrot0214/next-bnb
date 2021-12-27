@@ -35,7 +35,7 @@ export const makeMoneyString = (input: string) => {
 // * query string 만들기
 export const makeQueryString = (
   baseUrl: string,
-  queriesObject: Object & { [key: string]: any }
+  queriesObject: Object & { [key: string]: string | string[] | undefined }
 ) => {
   const keys = Object.keys(queriesObject);
   const values = Object.values(queriesObject);

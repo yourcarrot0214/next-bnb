@@ -9,6 +9,7 @@ import { logoutAPI } from "../lib/api/auth";
 import { userActions } from "../store/user";
 import { useSelector } from "../store";
 import palette from "../styles/palette";
+import { makeQueryString } from "../lib/utils";
 
 const Container = styled.div`
   .header-user-profile {
@@ -65,8 +66,11 @@ const Container = styled.div`
 const HeaderUserProfile: React.FC = () => {
   const [isUsermenuOpened, setIsUsermenuOpened] = useState(false);
   const userProfileImage = useSelector((state) => state.user.profileImage);
+  const userId = useSelector((state) => state.user.id);
   const dispatch = useDispatch();
   const router = useRouter();
+
+  const hostHref = makeQueryString("/host", { userId });
 
   const logout = async () => {
     try {
@@ -101,7 +105,16 @@ const HeaderUserProfile: React.FC = () => {
         </button>
         {isUsermenuOpened && (
           <ul className="header-usermenu">
-            <li>숙소 관리</li>
+            <Link href={hostHref}>
+              <a
+                role="presentation"
+                onClick={() => {
+                  setIsUsermenuOpened(false);
+                }}
+              >
+                <li>숙소 관리</li>
+              </a>
+            </Link>
             <Link href="/room/register/building">
               <a
                 role="presentation"

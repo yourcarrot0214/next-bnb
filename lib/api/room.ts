@@ -8,7 +8,7 @@ export const registerRoomAPI = (body: RegisterRoomState & { hostId: number }) =>
   axios.post("/api/rooms", body);
 
 // * 숙소 리스트 불러오기 query
-type GetRoomListAPIQueries = {
+export type GetRoomListAPIQueries = {
   location?: string | string[];
   checkInDate?: string | string[];
   checkOutDate?: string | string[];
